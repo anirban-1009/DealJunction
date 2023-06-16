@@ -11,7 +11,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}! now login')
-            return redirect('send_otp')
+            return redirect('login')
 
     else:
         form = UserRegisterForm()
