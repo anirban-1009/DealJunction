@@ -3,6 +3,19 @@ from django.core.exceptions import ValidationError
 
 from .models import User
 
+from django.contrib.auth.forms import UserCreationForm
+# from .models import Profile
+
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
+
+    
+    class Meta:
+        model = User
+        fields = ['email',  'password1', 'password2']
+
+
+
 
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
