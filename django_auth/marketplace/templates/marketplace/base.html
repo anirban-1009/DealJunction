@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marketplace</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f1f1;
+        }
+        .header {
+            background-color: #4b00ff;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-title {
+            color: #fff;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Lucida Handwriting', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="header-title">Marketplace</h1>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
