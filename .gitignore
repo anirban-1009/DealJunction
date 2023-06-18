@@ -160,5 +160,4 @@ cython_debug/
 #.idea/
 
 
-
 ZapBuy/db.sqlite3
