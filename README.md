@@ -92,4 +92,4 @@ Thank you for considering contributing to the Zap-Buy project. Your contribution
 
 ## License
 
-The Zap-Buy Django project is licensed under the [GNU General Public License (GPL)](LICENSE.md).
+The Zap-Buy Django project is licensed under the [GNU General Public License (GPL)](LICENSE).
