@@ -3,6 +3,7 @@ from users.models import User
 
 # Create your models here.
 class Item(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     image_url = models.URLField(null=True)
