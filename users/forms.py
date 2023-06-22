@@ -15,6 +15,16 @@ class UserRegisterForm(UserCreationForm):
         fields = ['email',  'password1', 'password2']
 
 
+class OTPVerificationForm(forms.Form):
+    otp = forms.CharField(label='OTP', max_length=6)
+
+    def clean_otp(self):
+        otp = self.cleaned_data['otp']
+        if not otp.isdigit() or len(otp) != 6:
+            raise forms.ValidationError('Invalid OTP')
+        return otp
+
+
 
 
 class UserCreationForm(forms.ModelForm):

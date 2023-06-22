@@ -64,8 +64,17 @@ def cart_clear(request):
 
 @login_required(login_url="/users/login")
 def cart_detail(request):
-    
-    return render(request, 'marketplace/cart_detail.html')
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    cart = Cart(request)
+    data = cart.session.items()
+    total = 0
+    for key, value in data:
+       if type(value) == dict:
+        for item in value.values():
+            price = float(item['price'])*float(item['quantity'])
+            total += price
+    return render(request, 'marketplace/cart_detail.html', {'total': total})
 
 @login_required
 def checkout(request):

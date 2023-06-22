@@ -9,7 +9,7 @@
             {% for item in items %}
             <div class="box">
                 <img src="{{ item.image }}" alt="{{ item.name }}" class="item-image">
-                <p>${{item.price}}</p>
+                <p>₹{{item.price}}</p>
                 <a class="btn btn-primary" href="{%url 'cart_add' item.id%}" role="button">Add</a>                
             </div>
             {% endfor %}

@@ -1,0 +1,25 @@
+<!-- verify_otp.html -->
+{% extends 'users/base.html' %}
+{% csrf_token %}
+<style>
+    .center{
+        text-align: center;
+    }
+</style>
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title" class="center">Verify OTP</h2>
+                <form method="post" action="{% url 'verify_otp'%}">
+                    {% csrf_token %}
+                    {{ form.as_div }}
+                    <button class="btn btn-primary" type="submit">Verify</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

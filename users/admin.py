@@ -10,8 +10,8 @@ class CustomUserAdmin(UserAdmin):
    list_display = ('email', 'is_admin')
    list_filter = ('is_admin',)
    fieldsets = (
-       (None, {'fields': ('email', 'password', 'wallet')}),
-       ('Permissions', {'fields': ('is_admin',)}),
+       (None, {'fields': ('email', 'password', 'wallet', 'email_otp')}),
+       ('Permissions', {'fields': ('is_admin','email_verified')}),
    )
    add_fieldsets = (
        (None, {
