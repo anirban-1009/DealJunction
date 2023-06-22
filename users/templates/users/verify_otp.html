@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-body">
                 <h2 class="card-title" class="center">Verify OTP</h2>
-                <form method="post" action="{% url 'verify_otp'%}">
+                <form method="post" action="{% url 'verify_otp' id=id %}">
                     {% csrf_token %}
                     {{ form.as_div }}
                     <button class="btn btn-primary" type="submit">Verify</button>

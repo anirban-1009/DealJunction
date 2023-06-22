@@ -62,19 +62,24 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto"> <!-- Add the "ml-auto" class to the <ul> element -->
-      <li class="nav-item">
-        <a class="nav-link">
-          Wallet: ₹{{ user.wallet }}
-        </a>
-      </li>
       <li class="nav-item ml-auto"> <!-- Add the "ml-auto" class to the <li> element -->
+        <li class="nav-item">
+          <a class="nav-link">
+            Wallet: ₹{{ user.wallet }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}?next={% url 'login' %}">
+            LogOut
+          </a>
+        </li>
         <li class="nav-item">
         <a class="nav-link" href="{% url 'cart_detail' %}">
           Cart
           <span class="badge badge-light">{{ request.session.cart|length }}</span>
         </a>
+        </li>
       </li>
-      
       </li>
     </ul>
   </div>

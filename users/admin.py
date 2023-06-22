@@ -7,10 +7,10 @@ class CustomUserAdmin(UserAdmin):
    add_form = UserCreationForm
  
   
-   list_display = ('email', 'is_admin')
+   list_display = ('email', 'is_admin', 'email_verified')
    list_filter = ('is_admin',)
    fieldsets = (
-       (None, {'fields': ('email', 'password', 'wallet', 'email_otp')}),
+       (None, {'fields': ('id','email', 'password', 'wallet', 'email_otp')}),
        ('Permissions', {'fields': ('is_admin','email_verified')}),
    )
    add_fieldsets = (
