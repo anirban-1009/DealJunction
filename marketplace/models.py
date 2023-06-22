@@ -1,7 +1,6 @@
 from django.db import models
 from users.models import User
 
-# Create your models here.
 class Item(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
@@ -11,17 +10,8 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
-
-class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    items = models.ManyToManyField(Item, through='CartItem')
-    def __str__(self):
-        return str(self.user.email)
-
-
-class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-    def __str__(self):
-        return str(self.item.name)
+class Product(models.Model):
+    name=models.CharField(max_length=255)
+    # image=models.CharField(max_length=200)
+    image = models.ImageField(upload_to='products/')
+    price=models.FloatField()

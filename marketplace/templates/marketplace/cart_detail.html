@@ -1,0 +1,49 @@
+<!-- card_details.html -->
+{% extends "marketplace/base.html" %}
+{% load cart_tag %}
+
+{% block content %}
+  <h1>Cart Details</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart %}
+        <tr>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.product.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>
+            <a href="{% url 'item_increment' item.product.id %}">+</a>
+            <a href="{% url 'item_decrement' item.product.id %}">-</a>
+            <a href="{% url 'item_clear' item.product.id %}">Remove</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <div>
+    <a href="{% url 'cart_clear' %}">Clear Cart</a>
+    <a href="{% url 'home' %}">Continue Shopping</a>
+  </div>
+  
+
+
+  Total Length :: {{request.session.cart|length}}
+
+  Cart Detail:
+
+  {% for key,value in request.session.cart.items %}
+
+      {{value.name}} {{value.price}} {{value.quantity}} {{value.image}} Total {{ value.price|multiply:value.quantity }}
+
+  {% endfor %}
+
+{% endblock %}

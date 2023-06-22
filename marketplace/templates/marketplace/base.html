@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+{% load cart_tag %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Navigation Bar</title>
+  <link rel="stylesheet" href="{% static 'marketplace/style.css' %}">
+  <style>
+    .navbar {
+      border-radius: 25px;
+    }
+
+    .badge {
+      border-radius: 50%;
+      padding: 5px 8px;
+      font-size: 12px;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-secondary">
+    <a class="navbar-brand" href="{% url 'home' %}">ZapBuy</a>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cart_detail' %}">
+          Cart
+          <span class="badge badge-light">{{request.session.cart|length}}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  {% block content %}
+  {% endblock %}
+</body>
+
+</html>
