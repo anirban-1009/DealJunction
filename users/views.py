@@ -2,16 +2,11 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, OTPVerificationForm
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-# from marketplace.models import Cart
 from .models import User
 import random
 from django.http import HttpResponse
 from django.core.mail import send_mail
+
 
 def generate_otp(length=6):
     return ''.join(random.choices('0123456789', k=length))
@@ -31,6 +26,9 @@ def send_otp_email(email):
     redirect('verify_otp', id=user.id)
 
 def verify_otp(request, id):
+    user = User.objects.get(id=id)
+    mail = user.email
+    print(mail)
     if request.method == 'POST':
         form = OTPVerificationForm(request.POST)
         if form.is_valid():
@@ -46,7 +44,7 @@ def verify_otp(request, id):
                 return HttpResponse('OTP verification failed!')
     else:
         form = OTPVerificationForm()
-    return render(request, 'users/verify_otp.html', {'form': form, 'id':id})
+    return render(request, 'users/verify_otp.html', {'form': form, 'id':id, 'mail': mail})
 
 
 def register(request):
@@ -64,3 +62,19 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+
+def login_and_email_verified_required(view_func):
+    """
+    Custom decorator to require both login and email verification.
+    """
+    @login_required
+    def wrapper(request, *args, **kwargs):
+        if request.user.email_verified:
+            # User is logged in and email is verified
+            return view_func(request, *args, **kwargs)
+        else:
+            # Redirect to email verification page
+            return redirect('verify_otp', id=request.user.id)
+    
+    return wrapper
