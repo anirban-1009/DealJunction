@@ -10,9 +10,7 @@
             <div class="box">
                 <img src="{{ item.image }}" alt="{{ item.name }}" class="item-image">
                 <p>${{item.price}}</p>
-                <div class="button-wrapper">
-                    <a href="add/{{ item.id }}/" class="add-button">Add</a>
-                </div>                
+                <a class="btn btn-primary" href="{%url 'cart_add' item.id%}" role="button">Add</a>                
             </div>
             {% endfor %}
         </div>

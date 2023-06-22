@@ -2,6 +2,15 @@
 {% extends "marketplace/base.html" %}
 {% load cart_tag %}
 
+<style>
+
+a.right {
+   display: inline-block;
+   text-align: right;
+   width: 100%;
+}
+</style>
+
 {% block content %}
   <h1>Cart Details</h1>
   <table class="table">
@@ -10,40 +19,30 @@
         <th>Product</th>
         <th>Price</th>
         <th>Quantity</th>
-        <th>Actions</th>
+        <th>Total</th>
       </tr>
     </thead>
     <tbody>
-      {% for item in cart %}
+      {% for key,value in request.session.cart.items %}
         <tr>
-          <td>{{ item.product.name }}</td>
-          <td>{{ item.product.price }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>
-            <a href="{% url 'item_increment' item.product.id %}">+</a>
-            <a href="{% url 'item_decrement' item.product.id %}">-</a>
-            <a href="{% url 'item_clear' item.product.id %}">Remove</a>
-          </td>
+          <td>{{ value.name }}</td>
+          <td>{{ value.price }}</td>
+          <td>{{ value.quantity }}</td>
+          <td>{{ value.price|multiply:value.quantity }}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
   
-  <div>
-    <a href="{% url 'cart_clear' %}">Clear Cart</a>
-    <a href="{% url 'home' %}">Continue Shopping</a>
+  <div style="display: flex; justify-content: space-around; padding: 5px;">
+    <a class="btn btn-primary" class="right" href="{% url 'cart_clear' %}">Clear Cart</a>
   </div>
-  
-
-
-  Total Length :: {{request.session.cart|length}}
-
-  Cart Detail:
-
-  {% for key,value in request.session.cart.items %}
-
-      {{value.name}} {{value.price}} {{value.quantity}} {{value.image}} Total {{ value.price|multiply:value.quantity }}
-
-  {% endfor %}
+  <br/>
+  <div style="display: flex; justify-content: space-around">
+    <a class="btn btn-secondary" class="right" href="{% url 'home' %}">Continue Shopping</a>
+  </div>
+  <div style="display: flex; justify-content: space-around; padding: 5px;">
+    <a class="btn btn-secondary" class="right" href="{% url 'checkout' %}">CheckOut</a>
+  </div>
 
 {% endblock %}
