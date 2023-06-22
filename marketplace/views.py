@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from .models import Item
 from users.views import login_and_email_verified_required
 from users.models import User
 from .models import Product
