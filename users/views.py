@@ -6,6 +6,7 @@ from .models import User
 import random
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from django_auth.secret import EMAIL
 
 
 def generate_otp(length=6):
@@ -19,7 +20,7 @@ def send_otp_email(email):
 
     subject = 'OTP Verification'
     message = f'Your OTP is: {otp}'
-    from_email = 'humanDensity009@gmail.com'
+    from_email = EMAIL
     to_email = [email]
 
     send_mail(subject, message, from_email, to_email)

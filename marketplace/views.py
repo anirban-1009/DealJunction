@@ -10,17 +10,6 @@ def home(request):
     items = Product.objects.all()
     return render(request, 'marketplace/home.html', {'items': items})
 
-# @login_and_email_verified_required
-# def buy_item(request, id):
-#     current_user = request.user.id
-#     try:
-#         cart = CartItem.objects.get()
-        
-#     except Cart.DoesNotExist:
-#         print("User Not found")
-    
-#     return redirect('home')
-
 
 @login_and_email_verified_required
 def cart_add(request, id):

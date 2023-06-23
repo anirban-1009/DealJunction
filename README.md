@@ -8,6 +8,16 @@ Zap-Buy is a Django-based web application designed to facilitate online shopping
 
 The project also focuses on dynamic routes, enabling users to navigate through different pages and perform specific actions based on the route. This feature enhances the overall user experience and provides a more interactive and seamless shopping experience.
 
+## Pre-Requisites
+
+Go to your Google account and obtain password for your mail account. This app password can be obtained using the [guide](https://support.google.com/accounts/answer/185833?hl=en) copy the password that is obtained and go to [secret.py](django_auth/secret.py) and replace the parameter to the mail id and the app password.
+
+```
+EMAIL_HOST_PASSWORD=[APP PASSWORD]
+EMAIL=[EMAIL ID]
+```
+
+
 ## Installation
 
 To get started with the Zap-Buy Django project, follow the steps below:
