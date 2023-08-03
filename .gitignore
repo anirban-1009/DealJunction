@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 /__pycache__/
 # django_auth/secret.py
+django_auth/secret.py
